@@ -33,13 +33,13 @@
             <!-- Sidebar -->
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pemasok') }}">Pemasok</a>
+                    <a class="nav-link" href="{{ route('pemasok.index') }}">Pemasok</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('kategori') }}">Kategori</a>
+                    <a class="nav-link" href="{{ route('kategori.index') }}">Kategori</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('produk') }}">Produk</a>
+                    <a class="nav-link" href="{{ route('produk.index') }}">Produk</a>
                 </li>
             </ul>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\admin;
+use App\Models\pemasok;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('Navbar.pemasok');
+        $pemasoks = pemasok::all();
+        return view('Navbar.pemasok.index', compact('pemasoks'));
     }
     public function showLoginForm()
     {

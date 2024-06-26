@@ -10,9 +10,19 @@ class PemasokController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pemasoks = pemasok::all();
+        $perPage = $request->query('perPage', 9);
+        $search = $request->query('search');
+
+        $query = Pemasok::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('contact', 'like', '%' . $search . '%')->orWhere('address', 'like', '%' . $search . '%');
+        }
+
+        $pemasoks = $query->paginate($perPage);
+
         return view('Navbar.pemasok.index', compact('pemasoks'));
     }
 
@@ -52,7 +62,7 @@ class PemasokController extends Controller
      */
     public function edit(pemasok $pemasok)
     {
-        return view('Navbar.pemasok.edit', compact('edit'));
+        return view('Navbar.pemasok.edit', compact('pemasok'));
     }
 
     /**

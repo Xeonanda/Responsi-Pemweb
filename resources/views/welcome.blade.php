@@ -34,6 +34,8 @@
         }
         .button:hover {
             background-color: #000;
+            text-decoration: none;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -43,6 +45,7 @@
     @endif
     <div class="container">
         <h1 style="font-size: 50px;">Welcome!</h1>
+        <p>Aplikasi ini adalah sebuah dashboard inventaris yang digunakan untuk tugas responsi mata kuliah pemrogramman web</p>
         <a href="{{ route('register') }}" class="button">Register</a>
         <a href="{{ route('login') }}" class="button">Login</a>
     </div>

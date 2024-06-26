@@ -20,9 +20,9 @@ Route::post('/login', [AdminController::class, 'login']);
 Route::get('/register', [AdminController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AdminController::class, 'register']);
 Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-Route::get('/home', [AdminController::class, 'index'])->name('home')->middleware('auth');
+Route::get('/home', [PemasokController::class, 'index'])->name('home')->middleware('auth');
 
 // Table
-Route::resource('kategori', KategoriController::class);
-Route::resource('pemasok', PemasokController::class);
-Route::resource('produk', ProdukController::class);
+Route::resource('kategori', KategoriController::class)->middleware('auth');
+Route::resource('pemasok', PemasokController::class)->middleware('auth');
+Route::resource('produk', ProdukController::class)->middleware('auth');

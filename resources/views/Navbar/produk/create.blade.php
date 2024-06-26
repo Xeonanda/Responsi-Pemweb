@@ -26,7 +26,7 @@
             </div>
             <div class="form-group">
                 <label for="price">Harga</label>
-                <input type="text" name="price" class="form-control" required step="0.01">
+                <input type="number" name="price" class="form-control" required>
             </div>
             <div class="form-group">
                 <label for="id_kategori">ID Kategori</label>

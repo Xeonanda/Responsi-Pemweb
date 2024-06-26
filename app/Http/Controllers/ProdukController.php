@@ -12,9 +12,24 @@ class ProdukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $produks = produk::all();
+        $perPage = $request->query('perPage', 9);
+        $search = $request->query('search');
+
+        $query = produk::query();
+
+        if (!empty($search)) {
+            $validatedSearch = filter_var($search, FILTER_VALIDATE_FLOAT);
+            if ($validatedSearch !== false) {
+                $query->where('nama', 'like', '%' . $search . '%')->orWhere('description', 'like', '%' . $search . '%')->orWhere('price', '=', $validatedSearch);
+            } else {
+                $query->where('nama', 'like', '%' . $search . '%')->orWhere('description', 'like', '%' . $search . '%');
+            }
+        }
+
+        $produks = $query->paginate($perPage);
+
         return view('Navbar.produk.index', compact('produks'));
     }
 
@@ -36,7 +51,7 @@ class ProdukController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'description' => 'string',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:9999999.99',
             'id_kategori' => 'required|numeric',
             'id_pemasok' => 'required|numeric'
         ]);
@@ -73,7 +88,7 @@ class ProdukController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|string|max:255',
             'description' => 'string',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:9999999.99',
             'id_kategori' => 'required|numeric',
             'id_pemasok' => 'required|numeric'
         ]);

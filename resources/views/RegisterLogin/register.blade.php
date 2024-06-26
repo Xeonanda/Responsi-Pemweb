@@ -86,13 +86,16 @@
             @enderror
 
             <input type="password" name="password_confirmation" class="input-field" placeholder="Confirm Password" required>
+            @error('password_confirmation')
+                <div>{{ $message }}</div>
+            @enderror
 
             <div style="margin-top: 20px;">
                 <button type="submit" class="button">Register</button>
                 <a href="{{ url('/') }}" class="button back">Back</a>
             </div>
         </form>
-        <a href="{{ route('login') }}">Already have an account? Login</a>
+        <a href="{{ route('login') }}" style="color: #000;">Already have an account? Login</a>
     </div>
 </body>
 </html>

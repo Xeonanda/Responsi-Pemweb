@@ -10,9 +10,19 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kategoris = kategori::all();
+        $perPage = $request->query('perPage', 9);
+        $search = $request->query('search');
+
+        $query = kategori::query();
+
+        if (!empty($search)) {
+            $query->where('nama', 'like', '%' . $search . '%')->orWhere('description', 'like', '%' . $search . '%');
+        }
+
+        $kategoris = $query->paginate($perPage);
+
         return view('Navbar.kategori.index', compact('kategoris'));
     }
 

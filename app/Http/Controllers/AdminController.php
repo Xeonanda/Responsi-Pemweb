@@ -30,7 +30,7 @@ class AdminController extends Controller
     public function register(Request $request) {
         $validateData = $request->validate(([
             'name' => 'required|max:255|unique:admins',
-            'password' => 'required|min:8'
+            'password' => 'required|min:8|confirmed'
         ]));
 
         $validateData['password'] = bcrypt($validateData['password']);

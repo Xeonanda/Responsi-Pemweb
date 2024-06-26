@@ -13,7 +13,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('RegisterLogin.main');
+        return view('Navbar.pemasok');
     }
     public function showLoginForm()
     {
